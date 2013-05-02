@@ -31,8 +31,8 @@ NEWFILEUID:NONE
                     <CURDEF>GBP
                         <BANKACCTFROM>
                             <BANKID>$routing_number
-                            <ACCTID>$number
-                            <ACCTTYPE>ACCOUNT_NAME
+                            <ACCTID>account_id
+                            <ACCTTYPE>$account_type
                         </BANKACCTFROM>
                         <BANKTRANLIST>
                             <DTSTART>$statement.start_date
