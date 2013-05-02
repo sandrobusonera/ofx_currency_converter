@@ -15,6 +15,7 @@ def convert_ofx_amounts(source_path, exchange_rate):
     new_current = open("%s_updated.ofx" % source_path, "w")
     new_current.write(str(rendering))
 
+
 def _get_template_context(ofx_file, exchange_rate):
     ofx = OfxParser.parse(file(ofx_file))
 
@@ -29,11 +30,14 @@ def _get_template_context(ofx_file, exchange_rate):
 
     return context
 
+
 def _convert_amount(amount, exchange_rate):
     return float(amount) * float(exchange_rate)
 
+
 def _date_to_text(date):
     return "%s%s%s000000[-5:EST]" % (date.year, date.month, date.day)
+
 
 def _convert_amount_transactions(transactions, exchange_rate):
     transactions_converted = []
@@ -43,6 +47,7 @@ def _convert_amount_transactions(transactions, exchange_rate):
         transactions_converted.append(transaction.__dict__)
 
     return transactions_converted
+
 
 if __name__ == '__main__':
     source_path = sys.argv[1]
