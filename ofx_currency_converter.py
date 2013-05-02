@@ -7,6 +7,7 @@ from ofx_parse import OfxParser
 
 def main(source_path, rate_exchange):
     extension = source_path.split('.')
+    assert extension[-1] == "ofx", "Please provide an OFX file"
 
     context = ofx_to_ofx(source_path, rate_exchange)
     rendering = Template(file="templates/ofx_currency_converter/template.ofx", searchList=[context])
