@@ -32,4 +32,6 @@ def ofx_to_ofx(ofx_file, rate_exchange):
     return context
 
 if __name__ == '__main__':
-    main(sys.argv[1], sys.argv[2])
+    source_path = sys.argv[1]
+    exchange_rate = sys.argv[2]
+    main(source_path, exchange_rate)
