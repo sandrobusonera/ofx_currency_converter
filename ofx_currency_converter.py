@@ -33,7 +33,7 @@ def _convert_amount(amount, exchange_rate):
 def _convert_amount_transactions(transactions, exchange_rate):
     transactions_converted = []
     for transaction in transactions:
-        transaction.amount = float(transaction.amount) * float(exchange_rate)
+        transaction.amount = _convert_amount(transaction.amount, exchange_rate)
         transactions_converted.append(transaction.__dict__)
 
     return transactions_converted
