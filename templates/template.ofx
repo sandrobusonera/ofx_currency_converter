@@ -28,7 +28,7 @@ NEWFILEUID:NONE
                         <SEVERITY>INFO
                 </STATUS>
                 <STMTRS>
-                    <CURDEF>GBP
+                    <CURDEF>$statement.currency
                         <BANKACCTFROM>
                             <BANKID>$routing_number
                             <ACCTID>account_id
