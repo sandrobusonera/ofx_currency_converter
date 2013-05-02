@@ -2,7 +2,7 @@
 import sys
 
 from Cheetah.Template import Template
-from ofx_parse import OfxParser
+from ofxparse import OfxParser
 
 
 def convert_ofx_amounts(source_path, exchange_rate):
@@ -18,11 +18,11 @@ def convert_ofx_amounts(source_path, exchange_rate):
 def _get_template_context(ofx_file, exchange_rate):
     ofx = OfxParser.parse(file(ofx_file))
 
-    context = dict(ofx.bank_account.__dict__)
-    context['statement'] = dict(ofx.bank_account.statement.__dict__)
+    context = dict(ofx.account.__dict__)
+    context['statement'] = dict(ofx.account.statement.__dict__)
     context['statement']['balance'] = _convert_amount(context['statement']['balance'], exchange_rate)
 
-    transactions = ofx.bank_account.statement.transactions
+    transactions = ofx.account.statement.transactions
     context['statement']['transactions'] = _convert_amount_transactions(transactions, exchange_rate)
 
     return context
