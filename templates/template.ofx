@@ -31,7 +31,7 @@ NEWFILEUID:NONE
                     <CURDEF>$statement.currency
                         <BANKACCTFROM>
                             <BANKID>$routing_number
-                            <ACCTID>account_id
+                            <ACCTID>$account_id
                             <ACCTTYPE>$account_type
                         </BANKACCTFROM>
                         <BANKTRANLIST>
