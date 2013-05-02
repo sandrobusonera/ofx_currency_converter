@@ -1,0 +1,59 @@
+OFXHEADER:100
+DATA:OFXSGML
+VERSION:102
+SECURITY:NONE
+ENCODING:USASCII
+CHARSET:1252
+COMPRESSION:NONE
+OLDFILEUID:NONE
+NEWFILEUID:NONE
+
+<OFX>
+    <SIGNONMSGSRSV1>
+        <SONRS>
+            <STATUS>
+                <CODE>0
+                    <SEVERITY>INFO
+            </STATUS>
+            <DTSERVER>20130420113838[-5:EST]
+                <LANGUAGE>ENG
+        </SONRS>
+    </SIGNONMSGSRSV1>
+    <BANKMSGSRSV1>
+
+        <STMTTRNRS>
+            <TRNUID>1
+                <STATUS>
+                    <CODE>0
+                        <SEVERITY>INFO
+                </STATUS>
+                <STMTRS>
+                    <CURDEF>GBP
+                        <BANKACCTFROM>
+                            <BANKID>$routing_number
+                            <ACCTID>$number
+                            <ACCTTYPE>ACCOUNT_NAME
+                        </BANKACCTFROM>
+                        <BANKTRANLIST>
+                            <DTSTART>$statement.start_date
+                            <DTEND>$statement.end_date
+
+                            #for $transaction in $statement.transactions
+                            <STMTTRN>
+                                <TRNTYPE>OTHER
+                                    <DTPOSTED>$transaction.date
+                                    <TRNAMT>$transaction.amount
+                                    <FITID>$transaction.id
+                                    <NAME>$transaction.payee
+                            </STMTTRN>
+                            #end for
+                        </BANKTRANLIST>
+                        <LEDGERBAL>
+                            <BALAMT>$statement.balance
+                            <DTASOF>$statement.end_date
+                        </LEDGERBAL>
+                </STMTRS>
+        </STMTTRNRS>
+
+    </BANKMSGSRSV1>
+</OFX>
