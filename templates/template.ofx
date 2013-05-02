@@ -40,7 +40,7 @@ NEWFILEUID:NONE
 
                             #for $transaction in $statement.transactions
                             <STMTTRN>
-                                <TRNTYPE>OTHER
+                                <TRNTYPE>$transaction.type
                                     <DTPOSTED>$transaction.date
                                     <TRNAMT>$transaction.amount
                                     <FITID>$transaction.id
