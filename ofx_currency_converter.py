@@ -5,28 +5,28 @@ from Cheetah.Template import Template
 from ofx_parse import OfxParser
 
 
-def convert_ofx_amounts(source_path, rate_exchange):
+def convert_ofx_amounts(source_path, exchange_rate):
     extension = source_path.split('.')
     assert extension[-1] == "ofx", "Please provide an OFX file"
 
-    context = ofx_to_ofx(source_path, rate_exchange)
+    context = ofx_to_ofx(source_path, exchange_rate)
     rendering = Template(file="templates/ofx_currency_converter/template.ofx", searchList=[context])
 
     new_current = open("%s_updated.ofx" % source_path, "w")
     new_current.write(str(rendering))
 
-def ofx_to_ofx(ofx_file, rate_exchange):
+def ofx_to_ofx(ofx_file, exchange_rate):
     ofx = OfxParser.parse(file(ofx_file))
 
     context = dict(ofx.bank_account.__dict__)
     context['statement'] = dict(ofx.bank_account.statement.__dict__)
     context['statement']['transactions'] = []
 
-    context['statement']['balance'] = float(context['statement']['balance']) * float(rate_exchange)
+    context['statement']['balance'] = float(context['statement']['balance']) * float(exchange_rate)
 
     transactions = ofx.bank_account.statement.transactions
     for transaction in transactions:
-        transaction.amount = float(transaction.amount) * float(rate_exchange)
+        transaction.amount = float(transaction.amount) * float(exchange_rate)
         context['statement']['transactions'].append(transaction.__dict__)
 
     return context
