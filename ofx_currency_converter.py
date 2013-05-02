@@ -9,13 +9,13 @@ def convert_ofx_amounts(source_path, exchange_rate):
     extension = source_path.split('.')
     assert extension[-1] == "ofx", "Please provide an OFX file"
 
-    context = ofx_to_ofx(source_path, exchange_rate)
+    context = _get_template_context(source_path, exchange_rate)
     rendering = Template(file="templates/ofx_currency_converter/template.ofx", searchList=[context])
 
     new_current = open("%s_updated.ofx" % source_path, "w")
     new_current.write(str(rendering))
 
-def ofx_to_ofx(ofx_file, exchange_rate):
+def _get_template_context(ofx_file, exchange_rate):
     ofx = OfxParser.parse(file(ofx_file))
 
     context = dict(ofx.bank_account.__dict__)
