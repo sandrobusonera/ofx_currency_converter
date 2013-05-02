@@ -5,7 +5,7 @@ from Cheetah.Template import Template
 from ofx_parse import OfxParser
 
 
-def main(source_path, rate_exchange):
+def convert_ofx_amounts(source_path, rate_exchange):
     extension = source_path.split('.')
     assert extension[-1] == "ofx", "Please provide an OFX file"
 
@@ -34,4 +34,4 @@ def ofx_to_ofx(ofx_file, rate_exchange):
 if __name__ == '__main__':
     source_path = sys.argv[1]
     exchange_rate = sys.argv[2]
-    main(source_path, exchange_rate)
+    convert_ofx_amounts(source_path, exchange_rate)
