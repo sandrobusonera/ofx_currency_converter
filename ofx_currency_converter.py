@@ -20,12 +20,15 @@ def _get_template_context(ofx_file, exchange_rate):
 
     context = dict(ofx.bank_account.__dict__)
     context['statement'] = dict(ofx.bank_account.statement.__dict__)
-    context['statement']['balance'] = float(context['statement']['balance']) * float(exchange_rate)
+    context['statement']['balance'] = _convert_amount(context['statement']['balance'], exchange_rate)
 
     transactions = ofx.bank_account.statement.transactions
     context['statement']['transactions'] = _convert_amount_transactions(transactions, exchange_rate)
 
     return context
+
+def _convert_amount(amount, exchange_rate):
+    return float(amount) * float(exchange_rate)
 
 def _convert_amount_transactions(transactions, exchange_rate):
     transactions_converted = []
