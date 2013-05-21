@@ -36,7 +36,7 @@ def _convert_amount(amount, exchange_rate):
 
 
 def _date_to_text(date):
-    return "%s%s%s000000[-5:EST]" % (date.year, date.month, date.day)
+    return date.strftime("%Y%m%d000000[-5:EST]")
 
 
 def _convert_amount_transactions(transactions, exchange_rate):
