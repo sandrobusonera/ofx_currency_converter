@@ -1,1 +1,5 @@
 *.pyc
+ofx_currency_converter.egg-info
+dist
+build
+/.idea/
