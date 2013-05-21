@@ -5,7 +5,7 @@ from setuptools import setup
 with open('setup/requirements.txt') as f:
     requirements = f.read().splitlines()
 
-setup(name='ofx_currency_converter',
+setup(name='ofx-currency-converter',
       version='0.0.1',
       author='Sandro Busonera',
       author_email='sandrobusonera@gmail.com',
