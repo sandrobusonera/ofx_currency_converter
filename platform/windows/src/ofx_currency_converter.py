@@ -65,6 +65,6 @@ def _convert_amount_transactions(transactions, exchange_rate):
 
 
 if __name__ == '__main__':
-    ofx_file = pick_file('Choose the private key corresponding on the project you would like to decrypt')
     currency_exchange_rate = "1.175"
+    ofx_file = pick_file('Please choose the OFX file to convert')
     convert_ofx_amounts(ofx_file, currency_exchange_rate)
