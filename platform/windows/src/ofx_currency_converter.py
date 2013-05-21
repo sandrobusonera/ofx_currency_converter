@@ -6,11 +6,16 @@ from ofxparse import OfxParser
 
 #TK
 import tkMessageBox
-import Tkinter,tkFileDialog
+import Tkinter,tkFileDialog,tkSimpleDialog
 
 def pick_file(title):
     root = Tkinter.Tk()
     return tkFileDialog.askopenfilename(parent=root,title=title)
+
+def get_currency_exchange_rate():
+    root = Tkinter.Tk()
+    title = "Enter the currency exchange rate"
+    return tkSimpleDialog.askfloat(title=title, prompt="Between 0 and 10 please:", parent=root, initialvalue=1.175, minvalue=0, maxvalue=10)
 
 def convert_ofx_amounts(source_path, exchange_rate):
     extension = source_path.split('.')
@@ -65,6 +70,6 @@ def _convert_amount_transactions(transactions, exchange_rate):
 
 
 if __name__ == '__main__':
-    currency_exchange_rate = "1.175"
     ofx_file = pick_file('Please choose the OFX file to convert')
+    currency_exchange_rate = get_currency_exchange_rate()
     convert_ofx_amounts(ofx_file, currency_exchange_rate)
